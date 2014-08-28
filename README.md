@@ -21,7 +21,7 @@ $ make test   # test (devDependencies need to be installed and a Redis server up
 for a trusted environment where Redis runs locally, unprotected on a port blocked by firewall.
 
 ```javascript
-var NRP = require('node-redis-pubsub')
+var NRP = require('node-redis-pubsub-fork')
   , config = { port: 6379       // Port of your locally running Redis server
              , scope: 'demo'    // Use a scope to prevent two NRPs from sharing messages
              }
@@ -31,7 +31,7 @@ var NRP = require('node-redis-pubsub')
 for a remote Redis server
 
 ```javascript
-var NRP = require('node-redis-pubsub')
+var NRP = require('node-redis-pubsub-fork')
   , config = { port: 1234       // Port of your remote Redis server
              , host: 'path.to.reremote.redis.host' // Redis server host, defaults to 127.0.0.1
              , auth: 'password' // Password

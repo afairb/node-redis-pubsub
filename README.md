@@ -10,8 +10,8 @@ is strange. So you use this wrapper.
 
 ## Install and test
 ```bash
-$ npm install node-redis-pubsub      # Install locally
-$ npm install -g node-redis-pubsub   # Install globally
+$ npm install node-redis-pubsub-fork      # Install locally
+$ npm install -g node-redis-pubsub-fork   # Install globally
 $
 $ make test   # test (devDependencies need to be installed and a Redis server up)
 ```

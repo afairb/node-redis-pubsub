@@ -10,7 +10,6 @@
 , "dependencies": { "redis": "0.8.x"
                   }
 , "devDependencies": { "mocha": "*"
-                     , "should": "*"
                      , "chai": "*"
                      }
 , "repository": { "type": "git"

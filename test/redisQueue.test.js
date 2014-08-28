@@ -61,20 +61,22 @@ describe('Node Redis Pubsub', function () {
       , num = 0;
       ;
 
-    rq.on('unsub test', function (data) {
+    var handler = function (data) {
       data.first.should.equal('Message');
       num++;
       if (num > 1) {
           // Should unsubscribe after two (or more) messages and not call done again
-          rq.off('unsub test');
           done();
       }
-    }
+    };
+
+    rq.on('unsub test', handler
     , function () {
         rq.emit('unsub test', { first: 'Message'},
             function(){
                 rq.emit('unsub test', { first: 'Message'},
                     function(){
+                        rq.off('unsub test', handler);
                         rq.emit('unsub test', { first: 'Message'});
                     });
             });
@@ -84,10 +86,12 @@ describe('Node Redis Pubsub', function () {
   it('Should be able to listen only once', function (done) {
     var rq = new NodeRedisPubsub(conf);
 
-    rq.once('once test', function (data) {
+    var handler = function (data) {
       data.first.should.equal('First message');
       done();
-    }
+    };
+
+    rq.once('once test', handler
     , function () {
         rq.emit('once test', { first: 'First message'},
             function(){

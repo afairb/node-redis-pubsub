@@ -43,9 +43,10 @@ var NRP = require('node-redis-pubsub-fork')
 ### Simple pubsub
 
 ```javascript
-nrp.on('say hello', function (data) {
+var helloHandler = function (data) {
   console.log('Hello ' + data.name);
 });
+nrp.on('say hello', helloHandler);
 
 nrp.emit('say hello', { name: 'Louis' });   // Outputs 'Hello Louis'
 
@@ -59,16 +60,17 @@ nrp.emit('city:hello', { city: 'Paris' });   // Outputs 'Paris is great'
 nrp.emit('city:yeah', { city: 'San Francisco' });   // Outputs 'San Francisco is great'
 
 
-// Unsubscribe from a channel you have preivously subscribed to
-nrp.off('say hello');
+// Unsubscribe from a channel and handler you have previously subscribed to
+nrp.off('say hello', helloHandler);
 
 
 // Only subscribe to a channel for a single message
-nrp.once('say goodbye', function (data) {
+var goodbyeHandler = function(data) {
   console.log('Goodbye ' + data.name);
-});
+};
+nrp.once('say goodbye', goodbyeHandler);
 
-nrp.emit('say goodbye', { name: 'Louis' });   // Outputs 'Goodbye Louis' then unsubscribes from future messages on this channel
+nrp.emit('say goodbye', { name: 'Louis' });   // Outputs 'Goodbye Louis' then unsubscribes from future messages with this handler on this channel
 ```
 
 

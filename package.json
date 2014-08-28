@@ -1,19 +1,20 @@
-{ "name": "node-redis-pubsub"
 , "version": "0.2.1"
+{ "name": "node-redis-pubsub-fork"
 , "author": { "name": "Louis Chatriot"
             , "email": "louis.chatriot@gmail.com"
             }
-, "contributors": [ "Louis Chatriot", "omarmohamed", "Martin Saint-Macary" ]
+, "contributors": [ "Louis Chatriot", "omarmohamed", "Martin Saint-Macary", "afairb" ]
 , "description": "Redis PubSub client for Node"
 , "keywords": ["redis", "pubsub", "node", "simple"]
-, "homepage": "https://github.com/louischatriot/node-redis-pubsub"
+, "homepage": "https://github.com/afairb/node-redis-pubsub"
 , "dependencies": { "redis": "0.8.x"
                   }
 , "devDependencies": { "mocha": "*"
                      , "should": "*"
+                     , "chai": "*"
                      }
 , "repository": { "type": "git"
-                , "url": "git://github.com/louischatriot/node-redis-pubsub"
+                , "url": "git://github.com/afairb/node-redis-pubsub"
                 }
 , "engines": {
     "node": "*"
@@ -22,4 +23,3 @@
 , "scripts": { "test": "make test" }
 , "licence": "mit"
 }
-

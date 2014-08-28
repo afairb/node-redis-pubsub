@@ -1,7 +1,7 @@
-NRP (Node Redis Pubsub)
+NRP (Node Redis Pubsub - Fork)
 =================
 
-**IMPORTANT: this library is not maintained anymore, please don't submit anymore pull requests except for bugfixes**
+**NOTE: this is a fork of Louis Chatriot's original [Node Redis Pubsub library](https://github.com/louischatriot/node-redis-pubsub) which is no longer maintained**
 
 Simple pubsub for node using Redis. Why use NRP instead of Node's EventEmitter? It is useful when
 your Node application needs to share data with other applications. In that case EventEmitter will not
@@ -12,7 +12,7 @@ is strange. So you use this wrapper.
 ```bash
 $ npm install node-redis-pubsub      # Install locally
 $ npm install -g node-redis-pubsub   # Install globally
-$ 
+$
 $ make test   # test (devDependencies need to be installed and a Redis server up)
 ```
 
@@ -34,7 +34,7 @@ for a remote Redis server
 var NRP = require('node-redis-pubsub')
   , config = { port: 1234       // Port of your remote Redis server
              , host: 'path.to.reremote.redis.host' // Redis server host, defaults to 127.0.0.1
-             , auth: 'password' // Password 
+             , auth: 'password' // Password
              , scope: 'demo'    // Use a scope to prevent two NRPs from sharing messages
              }
   , nrp = new NRP(config);      // This is the NRP client
@@ -60,7 +60,7 @@ nrp.emit('city:yeah', { city: 'San Francisco' });   // Outputs 'San Francisco is
 ```
 
 
-## License 
+## License
 
 (The MIT License)
 

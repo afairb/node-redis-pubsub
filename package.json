@@ -1,5 +1,5 @@
-, "version": "0.2.1"
 { "name": "node-redis-pubsub-fork"
+, "version": "0.3.0"
 , "author": { "name": "Louis Chatriot"
             , "email": "louis.chatriot@gmail.com"
             }

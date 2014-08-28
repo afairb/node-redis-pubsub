@@ -57,6 +57,18 @@ nrp.on('city:*', function (data) {
 
 nrp.emit('city:hello', { city: 'Paris' });   // Outputs 'Paris is great'
 nrp.emit('city:yeah', { city: 'San Francisco' });   // Outputs 'San Francisco is great'
+
+
+// Unsubscribe from a channel you have preivously subscribed to
+nrp.off('say hello');
+
+
+// Only subscribe to a channel for a single message
+nrp.once('say goodbye', function (data) {
+  console.log('Goodbye ' + data.name);
+});
+
+nrp.emit('say goodbye', { name: 'Louis' });   // Outputs 'Goodbye Louis' then unsubscribes from future messages on this channel
 ```
 
 

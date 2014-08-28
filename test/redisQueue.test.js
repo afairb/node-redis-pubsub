@@ -56,6 +56,44 @@ describe('Node Redis Pubsub', function () {
       });
   });
 
+  it('Should be able to unsubscribe', function (done) {
+    var rq = new NodeRedisPubsub(conf)
+      , num = 0;
+      ;
+
+    rq.on('unsub test', function (data) {
+      data.first.should.equal('Message');
+      num++;
+      if (num > 1) {
+          // Should unsubscribe after two (or more) messages and not call done again
+          rq.off('unsub test');
+          done();
+      }
+    }
+    , function () {
+        rq.emit('unsub test', { first: 'Message'},
+            function(){
+                rq.emit('unsub test', { first: 'Message'},
+                    function(){
+                        rq.emit('unsub test', { first: 'Message'});
+                    });
+            });
+      });
+  });
+
+  it('Should be able to listen only once', function (done) {
+    var rq = new NodeRedisPubsub(conf);
+
+    rq.once('once test', function (data) {
+      data.first.should.equal('First message');
+      done();
+    }
+    , function () {
+        rq.emit('once test', { first: 'First message'},
+            function(){
+                rq.emit('once test', { first: 'First message'});
+            });
+      });
+  });
+
 });
-
-

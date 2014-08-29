@@ -51,8 +51,8 @@ nrp.on('say hello', helloHandler);
 nrp.emit('say hello', { name: 'Louis' });   // Outputs 'Hello Louis'
 
 
-// You can use patterns to capture all messages of a certain type
-nrp.on('city:*', function (data) {
+// You can use patterns to capture all messages of a certain type, and get the full name of the channel a message is sent on
+nrp.on('city:*', function (data, channel) {
   console.log(data.city + ' is great');
 });
 

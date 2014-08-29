@@ -1,6 +1,7 @@
 var should = require('chai').should()
   , conf = { port: 6379, scope: 'onescope' }
   , conf2 = { port: 6379, scope: 'anotherscope' }
+  , conf3 = {}
   , NodeRedisPubsub = require('../index')
   ;
 
@@ -98,6 +99,23 @@ describe('Node Redis Pubsub', function () {
                 rq.emit('once test', { first: 'First message'});
             });
       });
+  });
+
+  it('Should give the name of the channel to the message handler', function (done) {
+    var rq = new NodeRedisPubsub(conf3);
+
+    rq.on('test_channel:*', function (data, channel) {
+        if (channel == 'test_channel:one') {
+            data.msg.should.equal('Message One');
+            rq.emit('test_channel:two', { msg: 'Message Two' });
+        } else if (channel == 'test_channel:two') {
+            data.msg.should.equal('Message Two');
+            done();
+        }
+    }
+    , function () {
+        rq.emit('test_channel:one', { msg: 'Message One' });
+    });
   });
 
 });

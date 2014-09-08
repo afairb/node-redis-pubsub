@@ -101,6 +101,23 @@ describe('Node Redis Pubsub', function () {
       });
   });
 
+  it('Should be able to listen only once with a condition', function (done) {
+    var rq = new NodeRedisPubsub(conf);
+
+    var handler = function (data) {
+      data.first.should.equal('Two');
+      done();
+    };
+
+    rq.onceIf('onceIf test', handler, 'first', 'Two'
+    , function () {
+        rq.emit('onceIf test', { first: 'One'},
+            function(){
+                rq.emit('onceIf test', { first: 'Two'});
+            });
+      });
+  });
+
   it('Should give the name of the channel to the message handler', function (done) {
     var rq = new NodeRedisPubsub(conf3);
 

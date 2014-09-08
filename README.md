@@ -78,7 +78,7 @@ nrp.emit('say goodbye', { name: 'Louis' });   // Outputs 'Goodbye Louis' then un
 
 (The MIT License)
 
-Copyright (c) 2012 tldr.io &lt;hello@tldr.io&gt;
+Copyright (c) 2014
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

@@ -1,4 +1,6 @@
-var should = require('chai').should()
+var redis = require('redis')
+  , should = require('chai').should()
+  , expect = require('chai').expect
   , conf = { port: 6379, scope: 'onescope' }
   , conf2 = { port: 6379, scope: 'anotherscope' }
   , conf3 = {}
@@ -135,4 +137,17 @@ describe('Node Redis Pubsub', function () {
     });
   });
 
+
+  it('Should allow custom clients', function () {
+    var count = 0;
+
+    new NodeRedisPubsub({
+        createClient: function() {
+            count++;
+            return redis.createClient();
+        }
+    });
+
+    expect(count).equal(2);
+  });
 });
